@@ -14,4 +14,12 @@ ln -sf ../opt/prts-cursor/prts-cursor build-stage/usr/bin/prts-cursor
 sed 's#^Exec=.*#Exec=prts-cursor#; s#^Icon=.*#Icon=prts-cursor#' prts-cursor.desktop > build-stage/usr/share/applications/prts-cursor.desktop
 cp icon.png build-stage/usr/share/icons/hicolor/128x128/apps/prts-cursor.png
 cp prts-cursor.metainfo.xml build-stage/usr/share/metainfo/
+THEME_SRC=${THEME_SRC:-$PWD/../assets/PRTS-Linux-1.1.5/PRTS-Linux/files}
+if [ -d "$THEME_SRC" ]; then
+  mkdir -p build-stage/usr/share/icons
+  cp -a "$THEME_SRC/PRTS-Final" "$THEME_SRC/PRTS-Final-Static" build-stage/usr/share/icons/
+  echo "themes: PRTS-Final + PRTS-Final-Static"
+else
+  echo "警告: 主题源不存在（THEME_SRC=$THEME_SRC），包内不含主题" >&2
+fi
 echo "staged: $(du -sh build-stage | cut -f1)"

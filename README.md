@@ -8,14 +8,17 @@
 
 ## 关于 PRTS 主题
 
-本仓库和发布包**不包含** PRTS 鼠标主题本身，只包含切换器。原因：
+安装包**内置** PRTS 鼠标主题，来自 [crowninggg/prts-cursor](https://github.com/crowninggg/prts-cursor) 的官方 release：
 
-- 主题包（`PRTS-Final`）有 697 MB / 4338 个文件（4128 个 SVG 帧，104 个光标 × 432 帧），`PRTS-Final-Static` 也有 19 MB
-- 其 `Credits.txt` 写明是「非官方自用衍生主题，明日方舟图像与角色版权归原权利人」，重新分发有版权风险
+- `PRTS-Final`（动画，4128 个 SVG 帧，解压约 697 MB，压缩后约 100 MB）
+- `PRTS-Final-Static`（静态，约 19 MB，压缩后约 1.4 MB）
 
-用法是：先自行获取 PRTS 主题包并运行它的 `INSTALL.sh`（装到 `~/.local/share/icons/PRTS-Final*`），再打开本工具切换。没有安装主题时，列表里的 PRTS 选项不会生效。
+装完即可在主题列表里切换，不需要额外下载。
 
 ## 功能
+
+- **主题随包分发**：安装包内含 `PRTS-Final`（动画）和 `PRTS-Final-Static`（静态），来自 [crowninggg/prts-cursor](https://github.com/crowninggg/prts-cursor)
+- 自动检测已安装主题
 
 - 切换 Xcursor 主题（PRTS 动画 / PRTS 静态 / Bibata / Adwaita）
 - 光标大小 16–72 px
@@ -35,15 +38,15 @@
 
 ## 分发包
 
-x86_64 的 RPM / DEB / AppImage 见 [Releases](https://github.com/h465855hgg/prts-cursor/releases)。
+x86_64 的 RPM / DEB / AppImage / tar.zst（均含 PRTS 主题）见 [Releases](https://github.com/h465855hgg/prts-cursor/releases)。
 
 ```sh
 # RPM（Fedora）
-sudo dnf install ./prts-cursor-1.0.0-1.fc45.x86_64.rpm
+sudo dnf install ./prts-cursor-1.2.0-1.fc45.x86_64.rpm
 # DEB（Debian/Ubuntu）
-sudo apt install ./prts-cursor_1.0.0-1_amd64.deb
+sudo apt install ./prts-cursor_1.2.0-1_amd64.deb
 # AppImage
-chmod +x prts-cursor-1.0.0-x86_64.AppImage && ./prts-cursor-1.0.0-x86_64.AppImage
+chmod +x prts-cursor-1.2.0-x86_64.AppImage && ./prts-cursor-1.2.0-x86_64.AppImage
 ```
 
 自己打包、以及 aarch64 原生构建说明见 [packaging/README.md](packaging/README.md)。

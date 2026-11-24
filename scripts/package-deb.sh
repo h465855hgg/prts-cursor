@@ -2,7 +2,7 @@
 set -eu
 cd "$(dirname "$0")/.."
 ARCH=${ARCH:-amd64}
-VERSION=1.0.0
+VERSION=1.2.0
 PKG=$PWD/build-deb
 rm -rf "$PKG"
 cp -a build-stage "$PKG"
@@ -38,10 +38,10 @@ chmod 755 "$PKG/DEBIAN/postinst" "$PKG/DEBIAN/postrm"
 (cd "$PKG" && find . -type f -not -path './DEBIAN/*' -printf '%P\0' | xargs -0 md5sum > DEBIAN/md5sums)
 printf '2.0\n' > "$PKG/debian-binary"
 tar -C "$PKG" -czf "$PKG/control.tar.gz" ./DEBIAN
-tar -C "$PKG" --owner=0 --group=0 -czf "$PKG/data.tar.gz" ./opt ./usr
+tar -C "$PKG" --owner=0 --group=0 --zstd -cf "$PKG/data.tar.zst" ./opt ./usr
 mkdir -p dist
 OUT="dist/prts-cursor_${VERSION}-1_${ARCH}.deb"
 rm -f "$OUT"
-(cd "$PKG" && ar rcs "../$OUT" debian-binary control.tar.gz data.tar.gz)
+(cd "$PKG" && ar rcs "../$OUT" debian-binary control.tar.gz data.tar.zst)
 echo "$OUT"
 ar t "$OUT"

@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           prts-cursor
-Version:        1.0.0
+Version:        1.2.0
 Release:        1%{?dist}
 Summary:        PRTS cursor theme and shader effect switcher for Umbriel
 License:        MIT
@@ -27,6 +27,8 @@ install -d %{buildroot}%{_datadir}/icons/hicolor/128x128/apps
 install -m644 %{stage}/usr/share/icons/hicolor/128x128/apps/prts-cursor.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/
 install -d %{buildroot}%{_datadir}/metainfo
 install -m644 %{stage}/usr/share/metainfo/prts-cursor.metainfo.xml %{buildroot}%{_datadir}/metainfo/
+install -d %{buildroot}%{_datadir}/icons
+cp -a %{stage}/usr/share/icons/PRTS-Final %{stage}/usr/share/icons/PRTS-Final-Static %{buildroot}%{_datadir}/icons/
 
 %post
 update-desktop-database -q %{_datadir}/applications >/dev/null 2>&1 || :
@@ -42,6 +44,8 @@ gtk-update-icon-cache -q -t -f %{_datadir}/icons/hicolor >/dev/null 2>&1 || :
 %{_datadir}/applications/prts-cursor.desktop
 %{_datadir}/icons/hicolor/128x128/apps/prts-cursor.png
 %{_datadir}/metainfo/prts-cursor.metainfo.xml
+/usr/share/icons/PRTS-Final
+/usr/share/icons/PRTS-Final-Static
 
 %changelog
 * Tue Nov 24 2026 h465855hgg <h465855hgg@users.noreply.github.com> - 1.0.0-1

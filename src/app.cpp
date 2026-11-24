@@ -42,6 +42,18 @@ std::string FindFile(const std::vector<std::string>& candidates) {
   return {};
 }
 
+bool ThemeInstalled(const std::string& name) {
+  return fs::exists(HomeDir() + "/.local/share/icons/" + name + "/cursors") ||
+         fs::exists(std::string("/usr/share/icons/") + name + "/cursors");
+}
+
+std::string ThemeInstallerPath() {
+  return FindFile({
+      ExecutableDir() + "/theme_installer.py",
+      HomeDir() + "/.local/opt/prts-cursor/theme_installer.py",
+  });
+}
+
 std::string HelperPath() {
   const auto dir = ExecutableDir();
   return FindFile({
@@ -292,6 +304,10 @@ View App() {
               Button("跟随 Niri").OnClick(followNiri),
               Text(status.Get(), TextRole::Label),
           }.With(Spacing(12.0F)),
+          Text(ThemeInstalled("PRTS-Final") || ThemeInstalled("PRTS-Final-Static")
+                   ? "PRTS 主题：随包安装（crowninggg/prts-cursor）"
+                   : "PRTS 主题：未找到",
+               TextRole::Label),
       }.With(Padding(14.0F), Spacing(6.0F), Background(Color::White()), CornerRadius(12.0F),
              Border{.color = Color::Rgb(226, 228, 236), .width = 1.0F})};
 

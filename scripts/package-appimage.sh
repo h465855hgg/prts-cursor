@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")/.."
-VERSION=1.0.0
+VERSION=1.2.0
 ARCH=${ARCH:-$(uname -m)}
 case "$ARCH" in aarch64|arm64) ARCH=aarch64 ;; esac
 TOOLS=$PWD/tools
@@ -23,6 +23,9 @@ cp prts-cursor.desktop "$APPDIR/usr/share/applications/"
 cp prts-cursor.metainfo.xml "$APPDIR/usr/share/metainfo/"
 cp icon.png "$APPDIR/prts-cursor.png"
 cp icon.png "$APPDIR/usr/share/icons/hicolor/128x128/apps/prts-cursor.png"
+if [ -d build-stage/usr/share/icons/PRTS-Final ]; then
+  cp -a build-stage/usr/share/icons/PRTS-Final build-stage/usr/share/icons/PRTS-Final-Static "$APPDIR/usr/share/icons/"
+fi
 cat > "$APPDIR/AppRun" <<'RUN'
 #!/bin/sh
 exec "$APPDIR/usr/bin/prts-cursor" "$@"
@@ -38,5 +41,10 @@ export ARCH
   --plugin gtk
 mkdir -p dist
 rm -f "dist/prts-cursor-${VERSION}-${ARCH}.AppImage"
-"$TOOLS/appimagetool-${ARCH}.AppImage" --appimage-extract-and-run --runtime-file "$TOOLS/runtime-${ARCH}" "$APPDIR" "dist/prts-cursor-${VERSION}-${ARCH}.AppImage"
+TOOL="$TOOLS/appimagetool-${ARCH}.AppImage"
+if [ -z "${DISPLAY:-}" ] && command -v xvfb-run >/dev/null 2>&1; then
+  xvfb-run -a "$TOOL" --appimage-extract-and-run --runtime-file "$TOOLS/runtime-${ARCH}" "$APPDIR" "dist/prts-cursor-${VERSION}-${ARCH}.AppImage"
+else
+  "$TOOL" --appimage-extract-and-run --runtime-file "$TOOLS/runtime-${ARCH}" "$APPDIR" "dist/prts-cursor-${VERSION}-${ARCH}.AppImage"
+fi
 ls -lh "dist/prts-cursor-${VERSION}-${ARCH}.AppImage"
