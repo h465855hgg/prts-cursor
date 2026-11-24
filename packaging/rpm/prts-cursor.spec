@@ -25,6 +25,8 @@ install -d %{buildroot}%{_datadir}/applications
 install -m644 %{stage}/usr/share/applications/prts-cursor.desktop %{buildroot}%{_datadir}/applications/
 install -d %{buildroot}%{_datadir}/icons/hicolor/128x128/apps
 install -m644 %{stage}/usr/share/icons/hicolor/128x128/apps/prts-cursor.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/
+install -d %{buildroot}%{_datadir}/metainfo
+install -m644 %{stage}/usr/share/metainfo/prts-cursor.metainfo.xml %{buildroot}%{_datadir}/metainfo/
 
 %post
 update-desktop-database -q %{_datadir}/applications >/dev/null 2>&1 || :
@@ -39,6 +41,7 @@ gtk-update-icon-cache -q -t -f %{_datadir}/icons/hicolor >/dev/null 2>&1 || :
 %{_bindir}/prts-cursor
 %{_datadir}/applications/prts-cursor.desktop
 %{_datadir}/icons/hicolor/128x128/apps/prts-cursor.png
+%{_datadir}/metainfo/prts-cursor.metainfo.xml
 
 %changelog
 * Tue Nov 24 2026 h465855hgg <h465855hgg@users.noreply.github.com> - 1.0.0-1

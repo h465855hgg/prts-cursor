@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>prts-cursor.desktop</id>
+  <name>PRTS 光标</name>
+  <summary>切换 Umbriel 鼠标主题、大小与光标 shader 光效</summary>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <description>
+    <p>PRTS 光标是一个给 Umbriel 用的鼠标主题与光标光效切换工具。</p>
+    <p>支持 PRTS / Bibata / Adwaita 主题、16–72 px 大小、以及 30 个社区光标 shader 光效，改动即时写入配置并热重载。</p>
+  </description>
+  <launchable type="desktop-id">prts-cursor.desktop</launchable>
+  <url type="homepage">https://github.com/h465855hgg/prts-cursor</url>
+  <url type="bugtracker">https://github.com/h465855hgg/prts-cursor/issues</url>
+  <provides>
+    <binary>prts-cursor</binary>
+  </provides>
+  <categories>
+    <category>Settings</category>
+  </categories>
+  <releases>
+    <release version="1.0.0" date="2026-11-24"/>
+  </releases>
+</component>

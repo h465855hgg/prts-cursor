@@ -13,12 +13,14 @@ fetch() {
 fetch "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-${ARCH}.AppImage" "linuxdeploy-${ARCH}.AppImage"
 fetch "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-${ARCH}.AppImage" "appimagetool-${ARCH}.AppImage"
 fetch "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh" "linuxdeploy-plugin-gtk.sh"
+fetch "https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-${ARCH}" "runtime-${ARCH}"
 APPDIR=$PWD/AppDir
 BIN=$PWD/build-stage/opt/prts-cursor
 rm -rf "$APPDIR"
-mkdir -p "$APPDIR/usr/bin" "$APPDIR/usr/share/applications" "$APPDIR/usr/share/icons/hicolor/128x128/apps"
+mkdir -p "$APPDIR/usr/bin" "$APPDIR/usr/share/applications" "$APPDIR/usr/share/icons/hicolor/128x128/apps" "$APPDIR/usr/share/metainfo"
 cp -a "$BIN/prts-cursor" "$BIN/prts-cursor.resources" "$BIN/helper.py" "$BIN/icon.png" "$APPDIR/usr/bin/"
 cp prts-cursor.desktop "$APPDIR/usr/share/applications/"
+cp prts-cursor.metainfo.xml "$APPDIR/usr/share/metainfo/"
 cp icon.png "$APPDIR/prts-cursor.png"
 cp icon.png "$APPDIR/usr/share/icons/hicolor/128x128/apps/prts-cursor.png"
 cat > "$APPDIR/AppRun" <<'RUN'
@@ -36,5 +38,5 @@ export ARCH
   --plugin gtk
 mkdir -p dist
 rm -f "dist/prts-cursor-${VERSION}-${ARCH}.AppImage"
-"$TOOLS/appimagetool-${ARCH}.AppImage" --appimage-extract-and-run "$APPDIR" "dist/prts-cursor-${VERSION}-${ARCH}.AppImage"
+"$TOOLS/appimagetool-${ARCH}.AppImage" --appimage-extract-and-run --runtime-file "$TOOLS/runtime-${ARCH}" "$APPDIR" "dist/prts-cursor-${VERSION}-${ARCH}.AppImage"
 ls -lh "dist/prts-cursor-${VERSION}-${ARCH}.AppImage"
