@@ -1,3 +1,6 @@
+# 放到 .github/workflows/build.yml 即可启用多架构打包。
+# 注意：推送 workflow 文件需要 token 有 workflow scope：
+#   gh auth refresh -h github.com -s workflow
 name: build-packages
 
 on:

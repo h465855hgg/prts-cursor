@@ -24,6 +24,21 @@
 - Python 3（`helper.py` 读写 Umbriel 配置）
 - Umbriel（配置在 `~/.config/umbriel/`）
 
+## 分发包
+
+x86_64 的 RPM / DEB / AppImage 见 [Releases](https://github.com/h465855hgg/prts-cursor/releases)。
+
+```sh
+# RPM（Fedora）
+sudo dnf install ./prts-cursor-1.0.0-1.fc45.x86_64.rpm
+# DEB（Debian/Ubuntu）
+sudo apt install ./prts-cursor_1.0.0-1_amd64.deb
+# AppImage
+chmod +x prts-cursor-1.0.0-x86_64.AppImage && ./prts-cursor-1.0.0-x86_64.AppImage
+```
+
+自己打包、以及 aarch64 原生构建说明见 [packaging/README.md](packaging/README.md)。
+
 ## 构建与安装
 
 ```sh
