@@ -78,7 +78,6 @@ install -Dm644 helper.py icon.png ~/.local/opt/prts-cursor/
 
 ## 已知限制
 
-- Umbriel 的合成器主题光标不支持多帧 Xcursor 动画，PRTS 动画版在 Umbriel 里是静态的（上游 issue：[noctalia-dev/umbriel#903](https://github.com/noctalia-dev/umbriel/issues/903)）
 - 光效不能叠加，同一时间只能挂一个
 - 光效需要先安装社区 shader 到 `~/.config/umbriel/shaders/community/cursor/`，并在配置 `[include]` 里引用
 
