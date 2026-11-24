@@ -22,7 +22,7 @@
 
 - 切换 Xcursor 主题（PRTS 动画 / PRTS 静态 / Bibata / Adwaita）
 - 光标大小 16–72 px
-- 切换社区光标 shader 光效，30 个预设单选（glow、cursor.spotlight、vampire-wake…）
+- 自动扫描社区光标 shader 光效，**新装的效果会自动出现，选中时自动加进 `[include]`**（glow、cursor.spotlight、vampire-wake…）
 - 调整当前光效的半径
 - **改动即时生效**：拖完滑条、点完单选就写入 `~/.config/umbriel/config.toml` 并热重载，没有「应用」按钮
 - 托盘：显示 / 隐藏窗口、跟随 Niri、退出
