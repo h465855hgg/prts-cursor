@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=PRTS 光标
+Comment=切换 PRTS 鼠标主题、大小与光标光效
+Exec=prts-cursor
+Icon=prts-cursor
+Terminal=false
+Categories=Settings;DesktopSettings;
+Keywords=cursor;pointer;prts;鼠标;指针;光效;
