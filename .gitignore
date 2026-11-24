@@ -2,3 +2,8 @@
 build/
 *.o
 dist/
+tools/
+build-stage/
+build-rpm/
+build-deb/
+AppDir/
